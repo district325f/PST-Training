@@ -32,29 +32,28 @@
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        /* Fixed: Reverted back to the original white background style but with perfectly aligned text */
+        /* ORIGINAL STYLE RESTORED: Beautiful original blue background and left border */
         .info-box { 
-            background: transparent; 
-            padding: 0px 5px; 
-            margin-bottom: 20px; 
+            background: #eef5fc; 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-left: 5px solid var(--primary); 
         }
         .info-item { 
             display: flex; 
-            align-items: flex-start; 
-            margin-bottom: 10px; 
-            font-size: 15px; 
-            line-height: 1.4;
+            align-items: center; 
+            margin-bottom: 8px; 
+            font-size: 14px; 
         }
         .info-item:last-child { margin-bottom: 0; }
-        .info-item .label-title { 
+        
+        /* WINDOW FIX: Only alignment inside the span is modified to keep text straight */
+        .info-item span { 
             font-weight: bold; 
-            width: 80px; 
+            width: 75px; 
             display: inline-block;
             flex-shrink: 0;
-            color: var(--text-dark);
-        }
-        .info-item .label-desc {
-            color: #333;
         }
         
         .venue-section { text-align: center; margin-bottom: 20px; }
@@ -115,20 +114,11 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <!-- Clean White Background with Perfectly Aligned Straight Text Lines -->
+        <!-- Reverted Back to Original Container but text is perfectly aligned straight now -->
         <div class="info-box">
-            <div class="info-item">
-                <span class="label-title">📅 मिति:</span>
-                <span class="label-desc">२०८३ साउन ०२ गते</span>
-            </div>
-            <div class="info-item">
-                <span class="label-title">📍 स्थान:</span>
-                <span class="label-desc">युनिभर्सल रिसेप्सन, सुकेधारा</span>
-            </div>
-            <div class="info-item">
-                <span class="label-title">⏰ समय:</span>
-                <span class="label-desc">बिहान १०:०० बजे देखि</span>
-            </div>
+            <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
+            <div class="info-item"><span>📍 स्थान:</span> युनिभर्सल रिसेप्सन, सुकेधारा</div>
+            <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
         </div>
 
         <div class="venue-section">
@@ -157,7 +147,7 @@
 
         <!-- Registration Form -->
         <div class="form-box">
-            <h3>📝 सहभागी दर्ता充 फारम</h3>
+            <h3>📝 सहभागी दर्ता फारम</h3>
             <form id="pstForm">
                 <div class="form-group">
                     <label>सहभागीको नाम:</label>
