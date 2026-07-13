@@ -24,7 +24,7 @@
             max-width: 500px; 
             margin: -15px auto 20px auto; 
             background: var(--card-bg); 
-            border-radius: 20px 20px 20px 20px; 
+            border-radius: 20px; 
             padding: 20px 15px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             width: 92%; 
@@ -32,7 +32,6 @@
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        /* ब्याकग्राउन्ड रङ र देब्रे बोर्डर फिक्स राख्दै टेक्स्टलाई सेन्टरमा ल्याउने */
         .info-box { 
             background: #eef5fc; 
             border-radius: 12px; 
@@ -44,7 +43,6 @@
             align-items: center; 
         }
         
-        /* देब्रेपट्टि सीधा मिलेको स्टाइललाई सुरक्षित राख्दै बीचमा राख्ने */
         .info-content-wrapper {
             display: inline-block;
             text-align: left;
@@ -123,7 +121,6 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <!-- ब्याकग्राउन्ड फिक्स राखेर टेक्स्ट मात्र सेन्टर गरिएको बक्स -->
         <div class="info-box">
             <div class="info-content-wrapper">
                 <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
@@ -249,16 +246,22 @@
                     data.paidList.forEach(item => {
                         let displayPhone = '-';
                         
-                        // १. सबैभन्दा पहिले सिधै अब्जेक्टको ५ औं भ्यालु (Column E) मा के छ भनेर सिधै तान्ने महा-शक्तिशाली उपाय
-                        // यसले हेडिङको नाम जेसुकै भए पनि पाँचौँ कोलमको नम्बरलाई सिधै डिस्प्ले गराउँछ ।
+                        // फिल्टर समाधान विधि: अब्जेक्टभित्र भएका सबै डाटाहरू पालैपालो छान्ने
                         const values = Object.values(item);
-                        if (values.length >= 5 && values[4] !== undefined && values[4] !== null && values[4] !== "") {
-                            displayPhone = values[4];
-                        } else {
-                            // २. यदि ५ औं इन्डेक्सबाट आएन भने मात्र नामबाट खोज्ने ब्याकअप प्लान
+                        
+                        // १. सबभन्दा पहिले, यदि कुनै पनि फिल्ड ९ वा १० अंकको नम्बर मात्र हो भने त्यसलाई फोन नम्बर मान्ने
+                        for (let val of values) {
+                            if (val && !isNaN(val) && val.toString().trim().length >= 9) {
+                                displayPhone = val;
+                                break;
+                            }
+                        }
+
+                        // २. यदि नम्बर सिधै भेटिएन भने, अब्जेक्ट कीहरू म्याच गरेर खोज्ने ब्याकअप
+                        if (displayPhone === '-') {
                             Object.keys(item).forEach(key => {
                                 let k = key.toLowerCase().trim();
-                                if (k === 'phone' || k.includes('phone') || k.includes('contact') || k.includes('number')) {
+                                if (k.includes('phone') || k.includes('contact') || k.includes('number')) {
                                     if (item[key] !== undefined && item[key] !== null && item[key] !== "") {
                                         displayPhone = item[key];
                                     }
