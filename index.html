@@ -32,14 +32,24 @@
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        /* ORIGINAL STYLE RESTORED: Beautiful original blue background and left border */
+        /* FIXED: Background color is locked permanently, and content wrapper centers the left-aligned text style */
         .info-box { 
             background: #eef5fc; 
             border-radius: 12px; 
-            padding: 15px; 
+            padding: 15px 20px; 
             margin-bottom: 15px; 
             border-left: 5px solid var(--primary); 
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* This moves the entire block to the center */
         }
+        
+        /* Keeps the text structure styled exactly like it was on the left */
+        .info-content-wrapper {
+            display: inline-block;
+            text-align: left;
+        }
+        
         .info-item { 
             display: flex; 
             align-items: center; 
@@ -48,7 +58,6 @@
         }
         .info-item:last-child { margin-bottom: 0; }
         
-        /* WINDOW FIX: Only alignment inside the span is modified to keep text straight */
         .info-item span { 
             font-weight: bold; 
             width: 75px; 
@@ -114,11 +123,13 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <!-- Reverted Back to Original Container but text is perfectly aligned straight now -->
+        <!-- Beautiful Original Box Restored & Text Perfectly Centered with Original Style -->
         <div class="info-box">
-            <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
-            <div class="info-item"><span>📍 स्थान:</span> युनिभर्सल रिसेप्सन, सुकेधारा</div>
-            <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
+            <div class="info-content-wrapper">
+                <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
+                <div class="info-item"><span>📍 स्थान:</span> युनिभर्सल रिसेप्सन, सुकेधारा</div>
+                <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
+            </div>
         </div>
 
         <div class="venue-section">
