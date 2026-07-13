@@ -247,20 +247,24 @@
                     tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
-                        // डिबगको लागि कन्सोलमा डेटा प्रिन्ट गर्ने
-                        console.log("सिटबाट आएको वास्तविक आइटम डेटा:", item);
-
                         let displayPhone = '-';
                         
-                        // सिटको हेडिङ 'Phone' वा 'phone' जुनसुकै भए पनि खोज्ने स्मार्ट लुप
-                        Object.keys(item).forEach(key => {
-                            let k = key.toLowerCase().trim();
-                            if (k === 'phone' || k.includes('phone') || k.includes('contact')) {
-                                if (item[key] !== undefined && item[key] !== null && item[key] !== "") {
-                                    displayPhone = item[key];
+                        // १. सबैभन्दा पहिले सिधै अब्जेक्टको ५ औं भ्यालु (Column E) मा के छ भनेर सिधै तान्ने महा-शक्तिशाली उपाय
+                        // यसले हेडिङको नाम जेसुकै भए पनि पाँचौँ कोलमको नम्बरलाई सिधै डिस्प्ले गराउँछ ।
+                        const values = Object.values(item);
+                        if (values.length >= 5 && values[4] !== undefined && values[4] !== null && values[4] !== "") {
+                            displayPhone = values[4];
+                        } else {
+                            // २. यदि ५ औं इन्डेक्सबाट आएन भने मात्र नामबाट खोज्ने ब्याकअप प्लान
+                            Object.keys(item).forEach(key => {
+                                let k = key.toLowerCase().trim();
+                                if (k === 'phone' || k.includes('phone') || k.includes('contact') || k.includes('number')) {
+                                    if (item[key] !== undefined && item[key] !== null && item[key] !== "") {
+                                        displayPhone = item[key];
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                         
                         const row = `<tr>
                             <td>${item.sn || ''}</td>
