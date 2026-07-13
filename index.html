@@ -13,59 +13,81 @@
             --text-dark: #333;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--primary); color: var(--text-dark); padding-bottom: 50px; }
-        .header { text-align: center; padding: 30px 20px; color: white; }
-        .header img { width: 90px; height: auto; margin-bottom: 10px; }
-        .header h1 { font-size: 24px; margin-bottom: 5px; letter-spacing: 1px; }
-        .header h2 { font-size: 16px; font-weight: normal; opacity: 0.9; }
-        .container { max-width: 500px; margin: -20px auto 20px auto; background: var(--card-bg); border-radius: 20px 20px 0 0; padding: 25px; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); }
-        .title { text-align: center; color: var(--accent); font-size: 26px; font-weight: bold; margin-bottom: 20px; }
+        body { background-color: var(--primary); color: var(--text-dark); padding-bottom: 20px; }
+        
+        /* मोबाइलमा फिट गराउन हेडर प्याडिङ मिलाइएको */
+        .header { text-align: center; padding: 25px 15px; color: white; }
+        .header img { width: 85px; height: auto; margin-bottom: 10px; }
+        .header h1 { font-size: 22px; margin-bottom: 5px; letter-spacing: 1px; }
+        .header h2 { font-size: 15px; font-weight: normal; opacity: 0.9; }
+        
+        /* मोबाइलको स्क्रिनमा दायाँ-बायाँ टाँसिन नदिन र फिट राख्न कन्टेनर */
+        .container { 
+            max-width: 500px; 
+            margin: -15px auto 20px auto; 
+            background: var(--card-bg); 
+            border-radius: 20px 20px 20px 20px; 
+            padding: 20px 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            width: 92%; /* मोबाइलमा दायाँबायाँ हल्का मार्जिन राख्छ */
+        }
+        
+        .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         .info-box { background: #eef5fc; border-radius: 12px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary); }
         .info-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 14px; }
         .info-item:last-child { margin-bottom: 0; }
         .info-item span { font-weight: bold; margin-right: 8px; }
+        
         .fee-card { background: #fffcf4; border: 2px dashed var(--accent); border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 20px; }
-        .fee-card h3 { color: var(--primary); font-size: 15px; margin-bottom: 5px; }
-        .fee-card .price { font-size: 28px; color: var(--accent); font-weight: bold; }
-        .form-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
-        .form-box h3 { font-size: 18px; margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .fee-card h3 { color: var(--primary); font-size: 14px; margin-bottom: 5px; line-height: 1.4; }
+        .fee-card .price { font-size: 26px; color: var(--accent); font-weight: bold; }
+        
+        .form-box { background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 25px; }
+        .form-box h3 { font-size: 17px; margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 5px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 14px; margin-bottom: 5px; font-weight: 600; }
-        .form-group input, .form-group select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; }
+        .form-group input, .form-group select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; -webkit-appearance: none; }
         .form-group input:focus, .form-group select:focus { border-color: var(--primary); }
+        
         .btn-submit { display: block; width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s; }
         .btn-submit:hover { background: #128c7e; }
-        .instruction { font-size: 12px; color: #666; margin-top: 8px; text-align: center; }
+        .instruction { font-size: 11px; color: #666; margin-top: 8px; text-align: center; line-height: 1.4; }
         
-        /* Scan to Pay Box Styling */
-        .qr-section { background: #fff; border: 2px solid var(--accent); border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* Scan to Pay Box Mobile Responsive */
+        .qr-section { background: #fff; border: 2px solid var(--accent); border-radius: 15px; padding: 15px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .qr-section h3 { color: var(--primary); font-size: 18px; margin-bottom: 3px; font-weight: bold; }
-        .qr-badge { background: var(--accent); color: white; display: inline-block; padding: 3px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
-        .qr-section img { max-width: 200px; height: auto; border: 1px solid #ddd; padding: 8px; border-radius: 10px; background: #fff; margin-bottom: 15px; }
-        .bank-details { background: #f9f9f9; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; max-width: 280px; margin: 0 auto; font-size: 13px; line-height: 1.6; }
-        .bank-row { margin-bottom: 5px; }
+        .qr-badge { background: var(--accent); color: white; display: inline-block; padding: 3px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+        .qr-section img { max-width: 100%; width: 180px; height: auto; border: 1px solid #ddd; padding: 8px; border-radius: 10px; background: #fff; margin-bottom: 15px; }
+        .bank-details { background: #f9f9f9; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; width: 100%; margin: 0 auto; font-size: 12.5px; line-height: 1.6; }
+        .bank-row { margin-bottom: 5px; display: flex; flex-wrap: wrap; }
         .bank-row:last-child { margin-bottom: 0; }
-        .bank-label { color: #555; font-weight: bold; }
+        .bank-label { color: #555; font-weight: bold; margin-right: 5px; flex-shrink: 0; }
         
-        .contacts-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        .contacts-card h3 { font-size: 16px; text-align: center; margin-bottom: 15px; color: var(--primary); }
+        .contacts-card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .contacts-card h3 { font-size: 15px; text-align: center; margin-bottom: 15px; color: var(--primary); }
         .contact-grid { display: flex; justify-content: space-between; gap: 10px; }
-        .contact-person { flex: 1; text-align: center; font-size: 13px; }
-        .contact-person .role { font-size: 11px; color: #777; }
-        .contact-person .name { font-weight: bold; margin: 3px 0; color: var(--primary); }
-        .contact-person a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .contact-person { flex: 1; text-align: center; font-size: 12px; }
+        .contact-person .role { font-size: 10px; color: #777; }
+        .contact-person .name { font-weight: bold; margin: 3px 0; color: var(--primary); line-height: 1.2; }
+        .contact-person a { color: var(--accent); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 2px; }
+        
+        /* तालिका मोबाइलमा स्क्रोल गर्न मिल्ने बनाएको */
         .list-section { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .list-section h3 { font-size: 16px; color: var(--primary); margin-bottom: 12px; text-align: center; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 400px; }
+        th, td { padding: 9px; border: 1px solid #ddd; text-align: left; }
         th { background-color: var(--primary); color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        /* Developer Footer Style */
+        .dev-footer { text-align: center; color: rgba(255, 255, 255, 0.75); font-size: 12px; margin-top: 20px; letter-spacing: 0.5px; }
+        .dev-footer a { color: #fff; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <!-- GitHub को logo.png लोड गर्ने ठाउँ -->
         <img src="logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/e/e6/Lions_Clubs_International_logo.svg'" alt="Lions Logo">
         <h1>LIONS INTERNATIONAL</h1>
         <h2>District 325 F</h2>
@@ -89,7 +111,7 @@
         <div class="qr-section">
             <h3>रजिष्ट्रेसनका लागि</h3>
             <div class="qr-badge">Scan to Pay</div>
-            <p style="font-size: 13px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्।</p>
+            <p style="font-size: 12.5px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्।</p>
             
             <!-- QR Code (Scan & Pay.jpg) -->
             <img src="Scan & Pay.jpg" onerror="this.src='https://via.placeholder.com/200?text=Scan+QR+Code'" alt="Scan to Pay">
@@ -97,7 +119,7 @@
             <!-- Bank Information -->
             <div class="bank-details">
                 <div class="bank-row"><span class="bank-label">A/C Holder Name:</span> <span style="color: #003366; font-weight: bold;">KRISHNA JYOTI SHAKYA</span></div>
-                <div class="bank-row"><span class="bank-label">Account Number:</span> <span style="color: #e67e22; font-weight: bold; font-size: 14px; letter-spacing: 0.5px;">02000501001261</span></div>
+                <div class="bank-row"><span class="bank-label">Account Number:</span> <span style="color: #e67e22; font-weight: bold; letter-spacing: 0.5px;">02000501001261</span></div>
                 <div class="bank-row"><span class="bank-label">Bank Name:</span> <span style="color: #333; font-weight: 600;">EVEREST BANK LTD.</span></div>
                 <div class="bank-row"><span class="bank-label">Bank Branch:</span> <span style="color: #333;">BALAJU BRANCH</span></div>
             </div>
@@ -155,37 +177,40 @@
         <!-- Paid List Table -->
         <div class="list-section">
             <h3>💵 Paid List</h3>
-            <table id="paidTable">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">S.N.</th>
-                        <th>Name</th>
-                        <th>Club Name</th>
-                        <th>Designation</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td colspan="4" style="text-align: center;">डाटा लोड हुँदैछ...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="paidTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 12%;">S.N.</th>
+                            <th>Name</th>
+                            <th>Club Name</th>
+                            <th>Designation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center;">डाटा लोड हुँदैछ...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
+    <!-- Designed Footer Section -->
+    <div class="dev-footer">
+        Designed by : <a href="tel:9851113811">Nirajan Aryal (9851113811)</a>
+    </div>
+
     <script>
-        // यहाँ आफ्नो गुगल एप स्क्रिप्टको वेव एप URL राख्नुहोस्
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeYEUDKACU_NJ5v-VGVAKzP3bzm6SJT7i5iIPmMFuF9ldhVbb-6j4tZhZx5g4Mby4H/exec";
-        // भौचर प्राप्त गर्ने ह्वाट्सएप नम्बर
         const WHATSAPP_RECEIVER = "9851030055"; 
 
-        // पेज लोड हुँदा सिटबाट पेड लिस्ट र क्लब सूची तान्ने फङ्सन
         async function loadInitialData() {
             try {
                 const response = await fetch(SCRIPT_URL);
                 const data = await response.json();
                 
-                // १. पेड लिस्ट टेबल भर्ने
                 const tbody = document.getElementById('tableBody');
                 tbody.innerHTML = '';
                 
@@ -203,7 +228,6 @@
                     });
                 }
 
-                // २. क्लबहरूको ड्रपडाउन भर्ने
                 const clubSelect = document.getElementById('clubName');
                 clubSelect.innerHTML = '<option value="">तपाईंको क्लब छनौट गर्नुहोस्</option>';
                 
@@ -223,7 +247,6 @@
             }
         }
 
-        // फारम सबमिट कार्य
         document.getElementById('pstForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -240,7 +263,6 @@
             const payload = { name, designation, clubName, phone };
 
             try {
-                // १. गुगल सिटमा डेटा पठाउने
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -249,7 +271,6 @@
                     body: JSON.stringify(payload)
                 });
 
-                // २. ह्वाट्सएप म्यासेज ढाँचा
                 const message = `*Lions Club PST Training Registration*\n\n` +
                                 `• *Name:* ${name}\n` +
                                 `• *Designation:* ${designation}\n` +
@@ -259,14 +280,11 @@
 
                 const whatsappUrl = `https://wa.me/${WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`;
                 
-                // ३. ह्वाट्सएप खोल्ने र २ सेकेन्डपछि तालिका रिफ्रेस गर्ने
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
                     document.getElementById('pstForm').reset();
                     submitBtn.innerText = originalText;
                     submitBtn.disabled = false;
-                    
-                    // टेबल तत्काल अपडेट गर्न डाटा फेरि तान्ने
                     setTimeout(loadInitialData, 2000);
                 }, 1000);
 
@@ -277,13 +295,7 @@
             }
         });
 
-        // सुरुमा लोड गर्ने
-        if(SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
-            loadInitialData();
-        } else {
-            document.getElementById('tableBody').innerHTML = `<tr><td colspan="4" style="text-align: center; color: orange;">कृपया Apps Script URL राख्नुहोस्।</td></tr>`;
-            document.getElementById('clubName').innerHTML = '<option value="">सिट लिङ्क हुन बाँकी</option>';
-        }
+        loadInitialData();
     </script>
 </body>
 </html>
