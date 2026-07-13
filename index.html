@@ -32,32 +32,26 @@
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        /* Updated: Info box centered as a whole block, but items are neatly left-aligned & vertically synchronized */
-        .info-box-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
+        /* Fixed: Reverted back to the original white background style but with perfectly aligned text */
         .info-box { 
-            background: #eef5fc; 
-            border-radius: 12px; 
-            padding: 15px 20px; 
-            border-left: 5px solid var(--primary);
-            display: inline-block;
-            min-width: 290px;
+            background: transparent; 
+            padding: 0px 5px; 
+            margin-bottom: 20px; 
         }
         .info-item { 
             display: flex; 
-            align-items: center; 
+            align-items: flex-start; 
             margin-bottom: 10px; 
-            font-size: 14.5px; 
+            font-size: 15px; 
+            line-height: 1.4;
         }
         .info-item:last-child { margin-bottom: 0; }
         .info-item .label-title { 
             font-weight: bold; 
-            width: 75px; 
+            width: 80px; 
             display: inline-block;
             flex-shrink: 0;
+            color: var(--text-dark);
         }
         .info-item .label-desc {
             color: #333;
@@ -121,21 +115,19 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <!-- Updated: Completely aligned block for Date, Venue and Time -->
-        <div class="info-box-wrapper">
-            <div class="info-box">
-                <div class="info-item">
-                    <span class="label-title">📅 मिति:</span>
-                    <span class="label-desc">२०८३ साउन ०२ गते</span>
-                </div>
-                <div class="info-item">
-                    <span class="label-title">📍 स्थान:</span>
-                    <span class="label-desc">युनिभर्सल रिसेप्सन, सुकेधारा</span>
-                </div>
-                <div class="info-item">
-                    <span class="label-title">⏰ समय:</span>
-                    <span class="label-desc">बिहान १०:०० बजे देखि</span>
-                </div>
+        <!-- Clean White Background with Perfectly Aligned Straight Text Lines -->
+        <div class="info-box">
+            <div class="info-item">
+                <span class="label-title">📅 मिति:</span>
+                <span class="label-desc">२०८३ साउन ०२ गते</span>
+            </div>
+            <div class="info-item">
+                <span class="label-title">📍 स्थान:</span>
+                <span class="label-desc">युनिभर्सल रिसेप्सन, सुकेधारा</span>
+            </div>
+            <div class="info-item">
+                <span class="label-title">⏰ समय:</span>
+                <span class="label-desc">बिहान १०:०० बजे देखि</span>
             </div>
         </div>
 
@@ -165,7 +157,7 @@
 
         <!-- Registration Form -->
         <div class="form-box">
-            <h3>📝 सहभागी दर्ता फारम</h3>
+            <h3>📝 सहभागी दर्ता充 फारम</h3>
             <form id="pstForm">
                 <div class="form-group">
                     <label>सहभागीको नाम:</label>
@@ -254,7 +246,6 @@
                     tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
-                        // Advanced dynamic phone checking logic to fix the blank/dash display issue
                         let displayPhone = '-';
                         const possibleKeys = ['phone', 'phoneNumber', 'contact', 'contactNo', 'phoneNo', 'mobile', 'whatsapp'];
                         
@@ -265,7 +256,6 @@
                             }
                         }
                         
-                        // Fallback check: check case insensitive or any object key containing 'phone' or 'contact'
                         if (displayPhone === '-') {
                             for (let key in item) {
                                 if (key.toLowerCase().includes('phone') || key.toLowerCase().includes('contact')) {
