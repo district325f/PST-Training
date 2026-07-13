@@ -97,8 +97,8 @@
         
         <!-- Info Box (Date, Time, Location) -->
         <div class="info-box">
-            <div class="info-item"><span>📅 मिति:</span> २०८३ जेठ १० गते[span_0](start_span)[span_0](end_span)</div>
-            <div class="info-item"><span>📍 स्थान:</span> गोदावरी फरेस्ट रिसोर्ट, ललितपुर</div>
+            <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
+            <div class="info-item"><span>📍 स्थान:</span> युनिभर्सल रिसेप्सनट, सुकेधारा</div>
             <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
         </div>
 
@@ -116,7 +116,7 @@
         <div class="qr-section">
             <h3>रजिष्ट्रेसनका लागि</h3>
             <div class="qr-badge">Scan to Pay</div>
-            <p style="font-size: 12.5px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्।</p>
+            <p style="font-size: 12.5px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस् ।</p>
             
             <img src="Scan & Pay.jpg" onerror="this.src='https://via.placeholder.com/200?text=Scan+QR+Code'" alt="Scan to Pay">
             
@@ -217,7 +217,7 @@
                 tbody.innerHTML = '';
                 
                 if(!data.paidList || data.paidList.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन।</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
                         const row = `<tr>
@@ -278,7 +278,7 @@
                                 `• *Designation:* ${designation}\n` +
                                 `• *Club Name:* ${clubName}\n` +
                                 `• *WhatsApp No:* ${phone}\n\n` +
-                                `_फारम सफलतापूर्वक बुझाइयो। बैंक भौचर/स्क्रिनसट तल संलग्न छ।_`;
+                                `_फारम सफलतापूर्वक बुझाइयो । बैंक भौचर/स्क्रिनसट तल संलग्न छ ।_`;
 
                 const whatsappUrl = `https://wa.me/${WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`;
                 
@@ -291,7 +291,7 @@
                 }, 1000);
 
             } catch (error) {
-                alert("केही प्राविधिक समस्या आयो। कृपया फेरि प्रयास गर्नुहोला।");
+                alert("केही प्राविधिक समस्या आयो। कृपया फेरि प्रयास गर्नुहोला ।");
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
             }
