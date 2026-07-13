@@ -63,7 +63,6 @@
         .bank-row:last-child { margin-bottom: 0; }
         .bank-label { color: #555; font-weight: bold; margin-right: 5px; flex-shrink: 0; }
         
-        /* Updated Contacts Card with clear background and border */
         .contacts-card { background: #f5f8fc; border: 1px solid #d2e1f0; border-left: 5px solid var(--primary); border-radius: 12px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 25px; }
         .contacts-card h3 { font-size: 15px; text-align: center; margin-bottom: 15px; color: var(--primary); font-weight: bold; }
         .contact-grid { display: flex; justify-content: space-between; gap: 10px; }
@@ -72,7 +71,6 @@
         .contact-person .name { font-weight: bold; margin: 3px 0; color: var(--primary); line-height: 1.2; }
         .contact-person a { color: var(--accent); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 2px; }
         
-        /* Updated List Section - Heading Left Aligned */
         .list-section { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
         .list-section h3 { font-size: 16px; color: var(--primary); margin-bottom: 12px; text-align: left; padding-left: 2px; }
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -158,7 +156,6 @@
             </form>
         </div>
 
-        <!-- For More Details Section with border & background styling -->
         <div class="contacts-card">
             <h3>📞 For more details</h3>
             <div class="contact-grid">
@@ -175,7 +172,6 @@
             </div>
         </div>
 
-        <!-- Paid List Table with Contact Number Column -->
         <div class="list-section">
             <h3>💵 Paid List</h3>
             <div class="table-responsive">
@@ -219,12 +215,15 @@
                     tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
+                        // सिटबाट आउने सम्भावित सबै कोलम नेमहरू म्याच गरिएको छ
+                        const displayPhone = item.phone || item.phoneNumber || item.contact || item.contactNo || item.phoneNo || '-';
+                        
                         const row = `<tr>
                             <td>${item.sn}</td>
                             <td><strong>${item.name}</strong></td>
                             <td>${item.clubName}</td>
                             <td>${item.designation}</td>
-                            <td>${item.phone ? item.phone : '-'}</td>
+                            <td>${displayPhone}</td>
                         </tr>`;
                         tbody.insertAdjacentHTML('beforeend', row);
                     });
