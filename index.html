@@ -32,7 +32,7 @@
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        /* FIXED: Background color is locked permanently, and content wrapper centers the left-aligned text style */
+        /* ब्याकग्राउन्ड रङ र देब्रे बोर्डर फिक्स राख्दै टेक्स्टलाई सेन्टरमा ल्याउने */
         .info-box { 
             background: #eef5fc; 
             border-radius: 12px; 
@@ -41,10 +41,10 @@
             border-left: 5px solid var(--primary); 
             display: flex;
             flex-direction: column;
-            align-items: center; /* This moves the entire block to the center */
+            align-items: center; 
         }
         
-        /* Keeps the text structure styled exactly like it was on the left */
+        /* देब्रेपट्टि सीधा मिलेको स्टाइललाई सुरक्षित राख्दै बीचमा राख्ने */
         .info-content-wrapper {
             display: inline-block;
             text-align: left;
@@ -123,7 +123,7 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <!-- Beautiful Original Box Restored & Text Perfectly Centered with Original Style -->
+        <!-- ब्याकग्राउन्ड फिक्स राखेर टेक्स्ट मात्र सेन्टर गरिएको बक्स -->
         <div class="info-box">
             <div class="info-content-wrapper">
                 <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
@@ -156,7 +156,7 @@
             </div>
         </div>
 
-        <!-- Registration Form -->
+        <!-- दर्ता फारम -->
         <div class="form-box">
             <h3>📝 सहभागी दर्ता फारम</h3>
             <form id="pstForm">
@@ -247,32 +247,26 @@
                     tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
+                        // डिबगको लागि कन्सोलमा डेटा प्रिन्ट गर्ने
+                        console.log("सिटबाट आएको वास्तविक आइटम डेटा:", item);
+
                         let displayPhone = '-';
-                        const possibleKeys = ['phone', 'phoneNumber', 'contact', 'contactNo', 'phoneNo', 'mobile', 'whatsapp'];
                         
-                        for (let key of possibleKeys) {
-                            if (item[key]) {
-                                displayPhone = item[key];
-                                break;
-                            }
-                        }
-                        
-                        if (displayPhone === '-') {
-                            for (let key in item) {
-                                if (key.toLowerCase().includes('phone') || key.toLowerCase().includes('contact')) {
-                                    if (item[key]) {
-                                        displayPhone = item[key];
-                                        break;
-                                    }
+                        // सिटको हेडिङ 'Phone' वा 'phone' जुनसुकै भए पनि खोज्ने स्मार्ट लुप
+                        Object.keys(item).forEach(key => {
+                            let k = key.toLowerCase().trim();
+                            if (k === 'phone' || k.includes('phone') || k.includes('contact')) {
+                                if (item[key] !== undefined && item[key] !== null && item[key] !== "") {
+                                    displayPhone = item[key];
                                 }
                             }
-                        }
+                        });
                         
                         const row = `<tr>
-                            <td>${item.sn}</td>
-                            <td><strong>${item.name}</strong></td>
-                            <td>${item.clubName}</td>
-                            <td>${item.designation}</td>
+                            <td>${item.sn || ''}</td>
+                            <td><strong>${item.name || ''}</strong></td>
+                            <td>${item.clubName || ''}</td>
+                            <td>${item.designation || ''}</td>
                             <td>${displayPhone}</td>
                         </tr>`;
                         tbody.insertAdjacentHTML('beforeend', row);
@@ -287,36 +281,29 @@
                         const option = `<option value="${club}">${club}</option>`;
                         clubSelect.insertAdjacentHTML('beforeend', option);
                     });
-                } else {
-                    clubSelect.innerHTML = '<option value="">कुनै क्लब भेटिएन (सिट जाँच गर्नुहोस्)</option>';
                 }
 
             } catch (error) {
                 console.error("Error loading initial data:", error);
                 document.getElementById('tableBody').innerHTML = `<tr><td colspan="5" style="text-align: center; color: red;">डेटा लोड गर्न सकिएन ।</td></tr>`;
-                document.getElementById('clubName').innerHTML = '<option value="">डेटा लोड भएन</option>';
             }
         }
 
         document.getElementById('pstForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('fullName').value;
             const designation = document.getElementById('designation').value;
             const clubName = document.getElementById('clubName').value;
             const phone = document.getElementById('phoneNumber').value;
 
-            const payload = { name, designation, clubName, phone };
-
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                cache: 'no-cache',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                setTimeout(loadInitialData, 1000);
-            }).catch(err => console.error("Background save failed:", err));
+                body: JSON.stringify({ name, designation, clubName, phone })
+            }).then(() => { 
+                setTimeout(loadInitialData, 1500); 
+            });
 
             const message = `नमस्ते लायन कृष्ण ज्योती शाक्य ज्यू,\n\n` +
                             `PST Training-2026 को लागि मेरो रजिष्ट्रेसन विवरण यस प्रकार छ:\n` +
@@ -325,11 +312,7 @@
                             `*पद:* ${designation}\n` +
                             `*Contact Number:* ${phone}\n\n` +
                             `मैले बैंक भौचरको फोटो यसै साथ संलग्न गरेको छु ।`;
-
-            const whatsappUrl = `https://wa.me/${WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-            
+            window.open(`https://wa.me/${WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`, '_blank');
             document.getElementById('pstForm').reset();
         });
 
