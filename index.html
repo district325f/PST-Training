@@ -36,8 +36,17 @@
         .btn-submit { display: block; width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s; }
         .btn-submit:hover { background: #128c7e; }
         .instruction { font-size: 12px; color: #666; margin-top: 8px; text-align: center; }
-        .qr-section { text-align: center; margin-bottom: 25px; background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 15px; }
-        .qr-section img { max-width: 200px; height: auto; margin-top: 10px; border: 1px solid #eee; padding: 5px; }
+        
+        /* Scan to Pay Box Styling */
+        .qr-section { background: #fff; border: 2px solid var(--accent); border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .qr-section h3 { color: var(--primary); font-size: 18px; margin-bottom: 3px; font-weight: bold; }
+        .qr-badge { background: var(--accent); color: white; display: inline-block; padding: 3px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+        .qr-section img { max-width: 200px; height: auto; border: 1px solid #ddd; padding: 8px; border-radius: 10px; background: #fff; margin-bottom: 15px; }
+        .bank-details { background: #f9f9f9; border-top: 1px dashed #ccc; padding-top: 15px; text-align: left; max-width: 280px; margin: 0 auto; font-size: 13px; line-height: 1.6; }
+        .bank-row { margin-bottom: 5px; }
+        .bank-row:last-child { margin-bottom: 0; }
+        .bank-label { color: #555; font-weight: bold; }
+        
         .contacts-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
         .contacts-card h3 { font-size: 16px; text-align: center; margin-bottom: 15px; color: var(--primary); }
         .contact-grid { display: flex; justify-content: space-between; gap: 10px; }
@@ -56,8 +65,8 @@
 <body>
 
     <div class="header">
-        <!-- यहाँ हजुरको GitHub को logo.png सिधै लोड हुन्छ -->
-        <img src="logo.png" onerror="this.src='[https://upload.wikimedia.org/wikipedia/commons/e/e6/Lions_Clubs_International_logo.svg](https://upload.wikimedia.org/wikipedia/commons/e/e6/Lions_Clubs_International_logo.svg)'" alt="Lions Logo">
+        <!-- GitHub को logo.png लोड गर्ने ठाउँ -->
+        <img src="logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/e/e6/Lions_Clubs_International_logo.svg'" alt="Lions Logo">
         <h1>LIONS INTERNATIONAL</h1>
         <h2>District 325 F</h2>
     </div>
@@ -66,7 +75,7 @@
         <div class="title">Club PST Training</div>
         
         <div class="info-box">
-            <div class="info-item"><span>📅 मिति:</span> २०८३ जेठ १० गते</div>
+            <div class="info-item"><span>📅 मिति:</span> २०८३ जेठ १० गते[span_0](start_span)[span_0](end_span)</div>
             <div class="info-item"><span>📍 स्थान:</span> गोदावरी फरेस्ट रिसोर्ट, ललितपुर</div>
             <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
         </div>
@@ -76,11 +85,22 @@
             <div class="price">रु. १,५००/- मात्र</div>
         </div>
 
-        <!-- Scan to Pay -->
+        <!-- Scan to Pay Box with Bank Details -->
         <div class="qr-section">
-            <h3>Scan to Pay</h3>
-            <p style="font-size: 12px; color: #555;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्</p>
-            <img src="Scan & Pay.jpg" onerror="this.src='[https://via.placeholder.com/200?text=Scan+QR+Code](https://via.placeholder.com/200?text=Scan+QR+Code)'" alt="Scan to Pay">
+            <h3>रजिष्ट्रेसनका लागि</h3>
+            <div class="qr-badge">Scan to Pay</div>
+            <p style="font-size: 13px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्।</p>
+            
+            <!-- QR Code (Scan & Pay.jpg) -->
+            <img src="Scan & Pay.jpg" onerror="this.src='https://via.placeholder.com/200?text=Scan+QR+Code'" alt="Scan to Pay">
+            
+            <!-- Bank Information -->
+            <div class="bank-details">
+                <div class="bank-row"><span class="bank-label">A/C Holder Name:</span> <span style="color: #003366; font-weight: bold;">KRISHNA JYOTI SHAKYA</span></div>
+                <div class="bank-row"><span class="bank-label">Account Number:</span> <span style="color: #e67e22; font-weight: bold; font-size: 14px; letter-spacing: 0.5px;">02000501001261</span></div>
+                <div class="bank-row"><span class="bank-label">Bank Name:</span> <span style="color: #333; font-weight: 600;">EVEREST BANK LTD.</span></div>
+                <div class="bank-row"><span class="bank-label">Bank Branch:</span> <span style="color: #333;">BALAJU BRANCH</span></div>
+            </div>
         </div>
 
         <!-- Registration Form -->
@@ -230,14 +250,14 @@
                 });
 
                 // २. ह्वाट्सएप म्यासेज ढाँचा
-                const message = `*Lions Club PST Training Registration*\\n\\n` +
-                                `• *Name:* ${name}\\n` +
-                                `• *Designation:* ${designation}\\n` +
-                                `• *Club Name:* ${clubName}\\n` +
-                                `• *WhatsApp No:* ${phone}\\n\\n` +
+                const message = `*Lions Club PST Training Registration*\n\n` +
+                                `• *Name:* ${name}\n` +
+                                `• *Designation:* ${designation}\n` +
+                                `• *Club Name:* ${clubName}\n` +
+                                `• *WhatsApp No:* ${phone}\n\n` +
                                 `_फारम सफलतापूर्वक बुझाइयो। बैंक भौचर/स्क्रिनसट तल संलग्न छ।_`;
 
-                const whatsappUrl = `[https://wa.me/$](https://wa.me/$){WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://wa.me/${WHATSAPP_RECEIVER}?text=${encodeURIComponent(message)}`;
                 
                 // ३. ह्वाट्सएप खोल्ने र २ सेकेन्डपछि तालिका रिफ्रेस गर्ने
                 setTimeout(() => {
