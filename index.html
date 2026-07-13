@@ -15,13 +15,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--primary); color: var(--text-dark); padding-bottom: 20px; }
         
-        /* मोबाइलमा फिट गराउन हेडर प्याडिङ मिलाइएको */
         .header { text-align: center; padding: 25px 15px; color: white; }
         .header img { width: 85px; height: auto; margin-bottom: 10px; }
         .header h1 { font-size: 22px; margin-bottom: 5px; letter-spacing: 1px; }
         .header h2 { font-size: 15px; font-weight: normal; opacity: 0.9; }
         
-        /* मोबाइलको स्क्रिनमा दायाँ-बायाँ टाँसिन नदिन र फिट राख्न कन्टेनर */
         .container { 
             max-width: 500px; 
             margin: -15px auto 20px auto; 
@@ -29,14 +27,18 @@
             border-radius: 20px 20px 20px 20px; 
             padding: 20px 15px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            width: 92%; /* मोबाइलमा दायाँबायाँ हल्का मार्जिन राख्छ */
+            width: 92%; 
         }
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        .info-box { background: #eef5fc; border-radius: 12px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary); }
+        .info-box { background: #eef5fc; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--primary); }
         .info-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 14px; }
         .info-item:last-child { margin-bottom: 0; }
         .info-item span { font-weight: bold; margin-right: 8px; }
+        
+        /* Venue Image Box Style */
+        .venue-section { text-align: center; margin-bottom: 20px; }
+        .venue-section img { width: 100%; max-width: 460px; height: auto; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         
         .fee-card { background: #fffcf4; border: 2px dashed var(--accent); border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 20px; }
         .fee-card h3 { color: var(--primary); font-size: 14px; margin-bottom: 5px; line-height: 1.4; }
@@ -53,7 +55,6 @@
         .btn-submit:hover { background: #128c7e; }
         .instruction { font-size: 11px; color: #666; margin-top: 8px; text-align: center; line-height: 1.4; }
         
-        /* Scan to Pay Box Mobile Responsive */
         .qr-section { background: #fff; border: 2px solid var(--accent); border-radius: 15px; padding: 15px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .qr-section h3 { color: var(--primary); font-size: 18px; margin-bottom: 3px; font-weight: bold; }
         .qr-badge { background: var(--accent); color: white; display: inline-block; padding: 3px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
@@ -71,8 +72,7 @@
         .contact-person .name { font-weight: bold; margin: 3px 0; color: var(--primary); line-height: 1.2; }
         .contact-person a { color: var(--accent); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 2px; }
         
-        /* तालिका मोबाइलमा स्क्रोल गर्न मिल्ने बनाएको */
-        .list-section { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .list-section { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
         .list-section h3 { font-size: 16px; color: var(--primary); margin-bottom: 12px; text-align: center; }
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 400px; }
@@ -80,7 +80,6 @@
         th { background-color: var(--primary); color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         
-        /* Developer Footer Style */
         .dev-footer { text-align: center; color: rgba(255, 255, 255, 0.75); font-size: 12px; margin-top: 20px; letter-spacing: 0.5px; }
         .dev-footer a { color: #fff; text-decoration: none; font-weight: bold; }
     </style>
@@ -96,10 +95,16 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
+        <!-- Info Box (Date, Time, Location) -->
         <div class="info-box">
             <div class="info-item"><span>📅 मिति:</span> २०८३ जेठ १० गते[span_0](start_span)[span_0](end_span)</div>
             <div class="info-item"><span>📍 स्थान:</span> गोदावरी फरेस्ट रिसोर्ट, ललितपुर</div>
             <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
+        </div>
+
+        <!-- Venue Image Section (Added right below Info Box) -->
+        <div class="venue-section">
+            <img src="venue.jpg" onerror="this.style.display='none'" alt="Event Venue">
         </div>
 
         <div class="fee-card">
@@ -113,10 +118,8 @@
             <div class="qr-badge">Scan to Pay</div>
             <p style="font-size: 12.5px; color: #555; margin-bottom: 12px;">भुक्तानीको लागि क्युआर कोड स्क्यान गर्नुहोस्।</p>
             
-            <!-- QR Code (Scan & Pay.jpg) -->
             <img src="Scan & Pay.jpg" onerror="this.src='https://via.placeholder.com/200?text=Scan+QR+Code'" alt="Scan to Pay">
             
-            <!-- Bank Information -->
             <div class="bank-details">
                 <div class="bank-row"><span class="bank-label">A/C Holder Name:</span> <span style="color: #003366; font-weight: bold;">KRISHNA JYOTI SHAKYA</span></div>
                 <div class="bank-row"><span class="bank-label">Account Number:</span> <span style="color: #e67e22; font-weight: bold; letter-spacing: 0.5px;">02000501001261</span></div>
@@ -197,7 +200,6 @@
         </div>
     </div>
 
-    <!-- Designed Footer Section -->
     <div class="dev-footer">
         Designed by : <a href="tel:9851113811">Nirajan Aryal (9851113811)</a>
     </div>
