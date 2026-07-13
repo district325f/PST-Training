@@ -31,10 +31,37 @@
         }
         
         .title { text-align: center; color: var(--accent); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        .info-box { background: #eef5fc; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--primary); }
-        .info-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 14px; }
+        
+        /* Updated: Info box centered as a whole block, but items are neatly left-aligned & vertically synchronized */
+        .info-box-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .info-box { 
+            background: #eef5fc; 
+            border-radius: 12px; 
+            padding: 15px 20px; 
+            border-left: 5px solid var(--primary);
+            display: inline-block;
+            min-width: 290px;
+        }
+        .info-item { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 10px; 
+            font-size: 14.5px; 
+        }
         .info-item:last-child { margin-bottom: 0; }
-        .info-item span { font-weight: bold; margin-right: 8px; }
+        .info-item .label-title { 
+            font-weight: bold; 
+            width: 75px; 
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .info-item .label-desc {
+            color: #333;
+        }
         
         .venue-section { text-align: center; margin-bottom: 20px; }
         .venue-section img { width: 100%; max-width: 460px; height: auto; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -94,10 +121,22 @@
     <div class="container">
         <div class="title">Club PST Training</div>
         
-        <div class="info-box">
-            <div class="info-item"><span>📅 मिति:</span> २०८३ साउन ०२ गते</div>
-            <div class="info-item"><span>📍 स्थान:</span> युनिभर्सल रिसेप्सन, सुकेधारा</div>
-            <div class="info-item"><span>⏰ समय:</span> बिहान १०:०० बजे देखि</div>
+        <!-- Updated: Completely aligned block for Date, Venue and Time -->
+        <div class="info-box-wrapper">
+            <div class="info-box">
+                <div class="info-item">
+                    <span class="label-title">📅 मिति:</span>
+                    <span class="label-desc">२०८३ साउन ०२ गते</span>
+                </div>
+                <div class="info-item">
+                    <span class="label-title">📍 स्थान:</span>
+                    <span class="label-desc">युनिभर्सल रिसेप्सन, सुकेधारा</span>
+                </div>
+                <div class="info-item">
+                    <span class="label-title">⏰ समय:</span>
+                    <span class="label-desc">बिहान १०:०० बजे देखि</span>
+                </div>
+            </div>
         </div>
 
         <div class="venue-section">
@@ -215,8 +254,28 @@
                     tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">हालसम्म कोही पनि दर्ता हुनुभएको छैन ।</td></tr>`;
                 } else {
                     data.paidList.forEach(item => {
-                        // सिटबाट आउने सम्भावित सबै कोलम नेमहरू म्याच गरिएको छ
-                        const displayPhone = item.phone || item.phoneNumber || item.contact || item.contactNo || item.phoneNo || '-';
+                        // Advanced dynamic phone checking logic to fix the blank/dash display issue
+                        let displayPhone = '-';
+                        const possibleKeys = ['phone', 'phoneNumber', 'contact', 'contactNo', 'phoneNo', 'mobile', 'whatsapp'];
+                        
+                        for (let key of possibleKeys) {
+                            if (item[key]) {
+                                displayPhone = item[key];
+                                break;
+                            }
+                        }
+                        
+                        // Fallback check: check case insensitive or any object key containing 'phone' or 'contact'
+                        if (displayPhone === '-') {
+                            for (let key in item) {
+                                if (key.toLowerCase().includes('phone') || key.toLowerCase().includes('contact')) {
+                                    if (item[key]) {
+                                        displayPhone = item[key];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                         
                         const row = `<tr>
                             <td>${item.sn}</td>
